@@ -53,8 +53,7 @@ function renderGame() {
         isAlive = false;
     };
     messageEl.textContent = message;
-
-}
+};
 
 function newCard() {
     if(isAlive === true && hasBlackJack === false) {
@@ -62,21 +61,6 @@ function newCard() {
     sum += card;
     cards.push(card);
     renderGame();
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }; 
+};  
 
