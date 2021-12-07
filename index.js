@@ -1,7 +1,8 @@
 let player = {
     name: "Catherine",
-    chips: 145
+    chips: 100
 };
+
 let cards = [];
 let sum = 0;
 let hasBlackJack = false;
@@ -11,8 +12,10 @@ let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
 
+
 let playerEl = document.getElementById("player-el");
 playerEl.textContent = player.name + ": $" + player.chips;
+
 
 //To return a random number between 1 and 13
 function getRandomCard() {
@@ -47,10 +50,16 @@ function renderGame() {
         message = "Do you want to draw a new card?";
     } else if (sum === 21) {
         message = "You've got a Blackjack";
+        isAlive = true;
         hasBlackJack = true;
-    } else {
+        player.chips = player.chips + 20;
+        playerEl.textContent = player.name + ": $" + player.chips;
+
+    } else if(sum > 21) {
         message = "You're out of the game";
         isAlive = false;
+        player.chips = player.chips - 10;
+        playerEl.textContent = player.name + ": $" + player.chips;
     };
     messageEl.textContent = message;
 };
@@ -60,7 +69,10 @@ function newCard() {
         let card = getRandomCard();
     sum += card;
     cards.push(card);
+    } else if(isAlive === true && hasBlackJack === true) {
+        let card = getRandomCard();
+    sum += card;
+    cards.push(card);
+    };
     renderGame();
-    }; 
 };  
-
